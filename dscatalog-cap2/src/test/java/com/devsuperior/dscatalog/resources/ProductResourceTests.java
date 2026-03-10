@@ -64,7 +64,7 @@ public class ProductResourceTests {
 		when(service.findById(existingId)).thenReturn(productDTO);
 		when(service.findById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
 
-		when(service.insert(any())).thenReturn(productDTO);
+		when(service.insert(any())).thenReturn(productDTO);		
 		
 		when(service.update(eq(existingId), any())).thenReturn(productDTO);
 		when(service.update(eq(nonExistingId), any())).thenThrow(ResourceNotFoundException.class);
@@ -72,7 +72,8 @@ public class ProductResourceTests {
 		doNothing().when(service).delete(existingId);
 		doThrow(ResourceNotFoundException.class).when(service).delete(nonExistingId);
 		doThrow(DatabaseException.class).when(service).delete(dependentId);
-	}
+	}	
+	
 	
 	@Test
 	public void deleteShouldReturnNoContentWhenIdExists() throws Exception {
