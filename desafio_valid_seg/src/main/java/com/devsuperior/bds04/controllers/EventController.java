@@ -28,7 +28,7 @@ public class EventController {
 	@Autowired
 	private EventService service;
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
+	/*@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")*/
 	@GetMapping
 	public ResponseEntity<Page<EventDTO>> findAll(Pageable pageable) {
 		PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("name"));
@@ -36,7 +36,7 @@ public class EventController {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
 	@PostMapping
 	public ResponseEntity<EventDTO> insert(@Valid @RequestBody EventDTO dto) {
 		dto = service.insert(dto);
