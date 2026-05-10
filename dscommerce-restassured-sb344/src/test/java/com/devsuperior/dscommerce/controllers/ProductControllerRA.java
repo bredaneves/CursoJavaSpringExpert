@@ -121,7 +121,7 @@ public class ProductControllerRA {
 		nonExistingProductId = 100L;
 		
 		given()
-			.get("/movies/{id}", nonExistingProductId)
+			.get("/products/{id}", nonExistingProductId)
 		.then()
 			.statusCode(404)
 			.body("error", equalTo("Not Found"))
